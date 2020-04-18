@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, TemplateRef } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
 import { GetDataService } from '../get-data.service';
 import {FormsModule} from '@angular/forms';
+import { WebStorageService, LOCAL_STORAGE } from 'angular-webstorage-service';
 @Component({
   selector: 'app-provider-selected',
   templateUrl: './provider-selected.component.html',
   styleUrls: ['./provider-selected.component.css']
 })
+
 export class ProviderSelectedComponent implements OnInit {
+  @ViewChild("openLoginModel") private openLoginModel: TemplateRef<Object>;
   providerSelected: Array<any>=[];
   mealPackage: Array<any>=[];
-  constructor( public route:ActivatedRoute, private router: Router, private getData: GetDataService) { }
+  isLoggedIn: boolean = true;
+  constructor( public route:ActivatedRoute, private router: Router, private getData: GetDataService, @Inject(LOCAL_STORAGE) private storage: WebStorageService) { }
   uid: string;
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -27,7 +31,13 @@ export class ProviderSelectedComponent implements OnInit {
   }
 
   pay(mealName){
-    this.router.navigate([`/providerSelected/${this.uid}/meal/${mealName}`]);
+    if(this.storage.get("userId") == null || this.storage.get("userId") == "" ){
+      this.isLoggedIn = false;
+    }
+    else{ 
+      this.isLoggedIn = true;
+      this.router.navigate([`/providerSelected/${this.uid}/meal/${mealName}`]);
+    }
   }
   getdata(uid){
      this.getData.getOnSelectProvider(uid).subscribe((data)=>{

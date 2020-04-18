@@ -8,6 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GetDataService {
+  
  uid: any;
  public data:any=[];
  private eventAuthError = new BehaviorSubject<string>("");
@@ -26,7 +27,7 @@ export class GetDataService {
        .then(userCredential =>{
          if(userCredential){
            this.saveInLocal("userId", userCredential.user.uid);
-      
+           
          }
        })
   }
@@ -53,14 +54,19 @@ export class GetDataService {
       return  this.db.collection(`Providers`).doc(`${this.uid}`).collection(`mealPackage`).doc(packageSelected).valueChanges();
     }
   } 
+  getUserData(uid: any) {
+    return  this.db.collection(`Customers`).doc(`${uid}`).valueChanges();
+  }
   saveInLocal(key, val): void {
     console.log('recieved= key:' + key + 'value:' + val);
     this.storage.set(key, val);
     this.data[key]= this.storage.get(key);
+    window.location.reload();
    }
    deleteFromStorage(key): void {
     this.storage.remove(key);
     console.log("Logout");
+    window.location.reload();
    }
   
 }

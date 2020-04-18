@@ -50,7 +50,12 @@
                   </tr>
                 </tbody>
               </table>
+              <div *ngIf ="isLoggedIn">
               <button type="button" class="btn btn-primary btn-lg btn-block" (click)="pay(meal.packageName)"><b>Pay: $</b>{{meal.price}}</button>
+            </div>
+            <div *ngIf ="!isLoggedIn">
+              <button type="button" class="btn btn-primary btn-lg btn-block" id="dropdownMenuLink" data-toggle="modal" data-target="#login"><b>Pay: $</b>{{meal.price}}</button>
+            </div>
         </div>
       </div>
     </div>

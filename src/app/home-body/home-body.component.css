@@ -16,3 +16,8 @@
     min-width: 18rem; 
     max-width:21rem;
 }
+@media only screen and (max-width: 766px) {
+    .card{
+        margin: auto;
+    }
+  }
