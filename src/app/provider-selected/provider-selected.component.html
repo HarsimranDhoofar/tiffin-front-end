@@ -1,0 +1,58 @@
+<header *ngFor="let provider of providerSelected" [ngStyle]="{'background':'url('+provider.avatarImage+') black no-repeat center center scroll;'}"> 
+    <div class="overlay"></div>
+    <div class="container h-100">
+      <div class="d-flex h-100 text-center align-items-center">
+        <div class="w-100 text-white">
+          <h1 class="display-3">{{provider.serviceName}}</h1>
+          <p class="lead mb-0">{{provider.address}}</p>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container"> 
+  <div class="accordion" id="accordionExample" *ngFor="let meal of mealPackage">
+    <div class="card"  data-toggle="collapse show" >
+      <div class="card-header" id="headingOne">
+        <h4 class="mb-0" style="vertical-align: middle;"><img class ="packageItemImg" src="{{meal.packageImg}}" height="100px" width="100px"><b>&nbsp;&nbsp;{{meal.packageName}}</b></h4>
+      </div>
+  
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+            <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <th scope="row">Monday</th>
+                    <td>{{meal.monday}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Tuesday</th>
+                    <td>{{meal.tuesday}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Wednesday</th>
+                    <td>{{meal.wednesday}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Thursday</th>
+                    <td>{{meal.thursday}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Friday</th>
+                    <td>{{meal.friday}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Saturday</th>
+                    <td>{{meal.saturday}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Sunday</th>
+                    <td>{{meal.sunday}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" class="btn btn-primary btn-lg btn-block" (click)="pay(meal.packageName)"><b>Pay: $</b>{{meal.price}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

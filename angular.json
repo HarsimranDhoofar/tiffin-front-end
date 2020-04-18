@@ -117,8 +117,16 @@
               "devServerTarget": "tiffin-front-end:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "tiffin-front-end"
+    }
+  },
+  "defaultProject": "tiffin-front-end",
+  "cli": {
+    "analytics": "5ef6a40b-cd3b-4151-963b-5cd90930c136"
+  }
 }

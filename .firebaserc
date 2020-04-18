@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "foodapp-d7dcc": {
+      "hosting": {
+        "tiffin-front-end": [
+          "foodapp-d7dcc"
+        ]
+      }
+    }
+  }
+}

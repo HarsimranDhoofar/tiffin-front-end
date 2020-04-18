@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "tiffin-front-end",
+      "public": "dist/tiffin-front-end",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
