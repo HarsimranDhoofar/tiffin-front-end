@@ -4,10 +4,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { StripeToken } from 'stripe-angular';
 @Injectable({
   providedIn: 'root'
 })
 export class GetDataService {
+  
   
  uid: any;
  public data:any=[];
@@ -68,5 +70,13 @@ export class GetDataService {
     console.log("Logout");
     window.location.reload();
    }
-  
+   pay(token: StripeToken, name: any, price: any, providerName: any) {
+    this.db.collection(`Customers`).doc(`${this.storage.get("userId")}`).collection(`currentSubscription`).doc(`stripetoken`).set({
+      tokenId: token.id,
+      cardnumber: token.card.last4,
+      price: price,
+      name:name,
+      providerName: providerName
+    });
+  }
 }
