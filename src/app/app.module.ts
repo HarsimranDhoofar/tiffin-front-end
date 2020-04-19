@@ -13,13 +13,16 @@ import { PaymentComponent } from './payment/payment.component';
 import {FormsModule} from '@angular/forms';
 import { StripeModule } from "stripe-angular"
 import { StorageServiceModule} from 'angular-webstorage-service';
+import { FooterComponent } from './footer/footer.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeBodyComponent,
     ProviderSelectedComponent,
-    PaymentComponent
+    PaymentComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { StorageServiceModule} from 'angular-webstorage-service';
     AngularFireAuthModule,
     StorageServiceModule,
     AngularFirestoreModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule
     
   ],
   providers: [],

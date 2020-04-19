@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { GetDataService } from '../get-data.service';
 import { Router } from '@angular/router';
 import { ProviderList } from '../provider-list.model';
@@ -9,6 +9,9 @@ import { ProviderList } from '../provider-list.model';
 })
 export class HomeBodyComponent implements OnInit {
   providerList: Array<any>=[];
+  @Pipe({
+    name: 'filter'
+  })
   searchText: any;
   constructor(private getData: GetDataService,
     private router: Router) { }

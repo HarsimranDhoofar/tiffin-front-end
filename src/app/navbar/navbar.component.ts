@@ -31,6 +31,9 @@ export class NavbarComponent implements OnInit {
     this.getData.login(frm1.value.email, frm1.value.password);
     
   }
+  loginAsGuest(){
+    this.getData.login("testcustomer@test.com", "test123");
+  }
 
   getdata(){
     this.getData.getUserData(this.storage.get("userId")).subscribe((data)=>{
