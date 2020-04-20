@@ -1,15 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { StripeToken, StripeSource } from "stripe-angular";
 import { Router } from '@angular/router';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { GetDataService } from '../get-data.service';
-import {
-  AfterViewInit,
-  OnDestroy,
-  ViewChild,
-  ElementRef,
-  ChangeDetectorRef
-} from '@angular/core';
+import { WebStorageService, LOCAL_STORAGE } from 'angular-webstorage-service';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -23,7 +17,12 @@ export class PaymentComponent implements OnInit {
   name: any;
   providerName: any;
   providerdata: Array<any>=[];
-  constructor(public route:ActivatedRoute, private router: Router, private getData: GetDataService ) { }
+  customerdata: Array<any>=[];
+  customerfName: any;
+  customerlNmae: any;
+  delivaryAddress: any;
+  email: any;
+  constructor(public route:ActivatedRoute, private router: Router, private getData: GetDataService, @Inject(LOCAL_STORAGE) private storage: WebStorageService ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -48,6 +47,15 @@ export class PaymentComponent implements OnInit {
           this.providerName = providerName['serviceName']
        })
    });
+   this.getData.getUserData(this.storage.get("userId")).subscribe((data)=>{
+    this.customerdata.push(data);
+    this.customerdata.find((finddata)=>{
+      this.customerfName = finddata['firstName'];
+      this.customerlNmae = finddata['lastName'];
+      this.delivaryAddress = finddata['deliveryAddress'];
+      this.email = finddata['email'];
+    })
+});
   }
   extraData = {
     "name": "null",
@@ -64,7 +72,7 @@ export class PaymentComponent implements OnInit {
  
   setStripeToken( token:StripeToken ){
     console.log('Stripe token', token)
-    this.pay(token, this.name , this.price, this.providerName );
+    this.pay(token, this.name , this.price, this.providerName , this.customerfName, this.customerlNmae, this.delivaryAddress, this.email );
   }
  
   setStripeSource( source:StripeSource ){
@@ -74,7 +82,7 @@ export class PaymentComponent implements OnInit {
   onStripeError( error:Error ){
     console.error('Stripe error', error)
   }
-  pay(token, name, price, providerName){
-    this.getData.pay(token,name,price, providerName);
+  pay(token, name, price, providerName, firstName, lastName, delivaryAddress, email){
+    this.getData.pay(token,name,price, providerName, firstName, lastName, delivaryAddress, email);
   }
 }

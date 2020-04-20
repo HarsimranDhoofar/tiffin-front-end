@@ -1,5 +1,6 @@
 
-   <div class="container">
+<div class="wrapper">
+ <div class="container">
     <div class ="payment" *ngFor="let payment of paymentPackage">
         <h1>CHECK OUT</h1>
         <img class ="packageItemImg" src="{{payment.packageImg}}" height="100px" width="100px">
@@ -26,4 +27,5 @@
   <button class="btn btn-primary btn-block" (click)="stripeCard.createToken(extraData)">Confirm Payment</button>
 </div>
   
+</div>
 </div>

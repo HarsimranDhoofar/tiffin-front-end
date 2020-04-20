@@ -4,7 +4,7 @@
     
     <nav class="my-2 my-md-0 mr-md-3">
    
-      <a class="p-2 text-dark" href="#">I am a Resturant?</a>
+      <a class="p-2 text-dark" href="https://harsimrandhoofar.github.io/Tiffin-Dashboard/">I am a Resturant?</a>
     </nav>
     <div *ngIf="!isLoggedIn">
     <a class="btn btn-outline-primary" data-toggle="modal" data-target="#login">Customer Login</a>
@@ -47,13 +47,99 @@
                 <label for="exampleDropdownFormPassword1"><i class="fa fa-key"></i>&nbsp;<b>Password</b></label>
                 <input ngModel #passwordlog="ngModel" name="password" type="password" class="form-control" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-outline-success btn-block" >  &nbsp;<b>SIGN IN</b></button>
+            <button type="submit" class="btn btn-outline-success btn-block" ><b><ngx-spinner></ngx-spinner>SIGN IN</b></button>
             <button type="button" class="btn btn-outline-primary btn-block" (click)="loginAsGuest()">  &nbsp;<b>LOGIN AS GUEST</b></button>
+            <button type="button" class="btn btn-outline-primary btn-block" data-dismiss="modal" data-toggle="modal" data-target="#create">  &nbsp;<b>CREATE NEW ACCOUNT</b></button>
         </form>
         </div>
-        <div class="modal-footer">
-            
+        
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create New Account</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+          <form class="px-4 py-3" #newAccountForm="ngForm" (ngSubmit)="newAccount(newAccountForm)">
+            <div class="row" >
+                <!-- <div class="col-12 alert alert-danger">{{authError?.message}}</div> -->
+            </div>
+            <div class="form-group">
+              <label for="exampleDropdownFormEmail1"><i class="fa fa-envelope-square"></i>&nbsp;<b>First Name</b></label>
+              <input ngModel #firstName="ngModel" type="text" name="firstName" class="form-control" placeholder="Your First Name">
+          </div>
+          <div class="form-group">
+            <label for="exampleDropdownFormEmail1"><i class="fa fa-envelope-square"></i>&nbsp;<b>Last Name</b></label>
+            <input ngModel #lastName="ngModel" type="text" name="lastName" class="form-control" placeholder="Your Last Name">
+        </div>
+        <div class="form-group">
+          <label for="exampleDropdownFormEmail1"><i class="fa fa-envelope-square"></i>&nbsp;<b>Delivery Address</b></label>
+          <input ngModel #deliveryAddress="ngModel" type="text" name="deliveryAddress" class="form-control" placeholder="123 My street, City">
+      </div>
+            <div class="form-group">
+                <label for="exampleDropdownFormEmail1"><i class="fa fa-envelope-square"></i>&nbsp;<b>Email address</b></label>
+                <input ngModel #email="ngModel" type="email" name="email" class="form-control" placeholder="email@example.com">
+            </div>
+            <div class="form-group">
+                <label for="exampleDropdownFormPassword1"><i class="fa fa-key"></i>&nbsp;<b>Password</b></label>
+                <input ngModel #password="ngModel" name="password" type="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <label for="exampleDropdownFormEmail1"><i class="fa fa-envelope-square"></i>&nbsp;<b>Confirm Password</b></label>
+              <input ngModel #cpassword="ngModel" type="password" name="cpassword" class="form-control" placeholder="Confirm Password">
+          </div>
+            <button type="submit" class="btn btn-outline-success btn-block" >  &nbsp;<b>CREATE AND SIGN IN</b></button>
+            <button type="button" class="btn btn-outline-success btn-block" data-dismiss="modal" data-toggle="modal" data-target="#login">  &nbsp;<b>ALREADY HAVE ACCOUNT? SIGNIN</b></button>
+        </form>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngFor="let customers of customerdata" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="px-4 py-3" #editProfileForm="ngForm" (ngSubmit)="editProfile(editProfileForm)" >
+            <div class="row" >
+                <!-- <div class="col-12 alert alert-danger">{{authError?.message}}</div> -->
+            </div>
+            <div class="form-group">
+              <label for="exampleDropdownFormEmail1"><i class="fa fa-envelope-square"></i>&nbsp;<b>First Name</b></label>
+              <input ngModel={{customers.firstName}} #firstName="ngModel" type="text" name="firstName" class="form-control" value={{customers.firstName}}>
+          </div>
+          <div class="form-group">
+            <label for="exampleDropdownFormEmail1"><i class="fa fa-envelope-square"></i>&nbsp;<b>Last Name</b></label>
+            <input ngModel={{customers.lastName}} #lastName="ngModel" type="text" name="lastName" class="form-control" value={{customers.lastName}}>
+        </div>
+        <div class="form-group">
+          <label for="exampleDropdownFormEmail1"><i class="fa fa-envelope-square"></i>&nbsp;<b>Delivery Address</b></label>
+          <input ngModel={{customers.deliveryAddress}} #deliveryAddress="ngModel" type="text" name="deliveryAddress" class="form-control" value={{customers.deliveryAddress}}>
+      </div>
+            <div class="form-group">
+                <label for="exampleDropdownFormEmail1"><i class="fa fa-envelope-square"></i>&nbsp;<b>Email address</b></label>
+                <input ngModel={{customers.email}} #email="ngModel" type="email" name="email" class="form-control" value={{customers.email}}>
+            </div>
+            <button type="submit" class="btn btn-outline-success btn-block" >  &nbsp;<b>UPDATE</b></button>
+          
+        </form>
+        </div>
+  
       </div>
     </div>
   </div>

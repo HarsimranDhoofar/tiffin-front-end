@@ -15,6 +15,7 @@ import { StripeModule } from "stripe-angular"
 import { StorageServiceModule} from 'angular-webstorage-service';
 import { FooterComponent } from './footer/footer.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     StorageServiceModule,
     AngularFirestoreModule,
     FormsModule,
-    Ng2SearchPipeModule
+    NgxSpinnerModule,
+    Ng2SearchPipeModule,
+    
     
   ],
   providers: [],

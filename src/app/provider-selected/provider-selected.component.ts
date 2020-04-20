@@ -31,6 +31,7 @@ export class ProviderSelectedComponent implements OnInit {
   }
 
   pay(mealName){
+    this.isLoggedIn = false;
     if(this.storage.get("userId") == null || this.storage.get("userId") == "" ){
       this.isLoggedIn = false;
     }

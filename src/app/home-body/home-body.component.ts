@@ -9,6 +9,8 @@ import { ProviderList } from '../provider-list.model';
 })
 export class HomeBodyComponent implements OnInit {
   providerList: Array<any>=[];
+  currentSubscription: Array<any>=[];
+  isSubscribed: boolean = false;
   @Pipe({
     name: 'filter'
   })
@@ -18,6 +20,7 @@ export class HomeBodyComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataM();
+    this.getCurrentSubscription()
   }
   providerClick(providerUid){
      this.router.navigate([`/providerSelected/${providerUid}`])
@@ -28,5 +31,17 @@ export class HomeBodyComponent implements OnInit {
               this.providerList.push(data);    
        });
     });
+  }
+  getCurrentSubscription(){
+    this.getData.getCurrentSubscription().subscribe((data)=>{
+        if(data == null || data ==" "){
+          this.isSubscribed = false;
+        }
+        else{
+          this.isSubscribed = true;
+          this.currentSubscription.push(data);
+        }
+        
+    })
   }
 }
