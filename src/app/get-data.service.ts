@@ -144,6 +144,8 @@ export class GetDataService {
       paymentState:"Approved",
       profileImg:"",
       uId:this.storage.get("userId")
+    }).then(()=>{
+      this.router.navigate(["/"]);
     });
   }
 }
