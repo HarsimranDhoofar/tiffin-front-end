@@ -10,7 +10,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class NavbarComponent implements OnInit {
   mySubscription: any;
-  isLoggedIn: boolean;
+  isLoggedIn: boolean = false;
   customerdata: Array<any> =[];
 
   constructor(private getData: GetDataService,
