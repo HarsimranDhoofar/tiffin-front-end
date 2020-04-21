@@ -1,3 +1,7 @@
+.jumbotron{
+   background-color: black;
+   color: white;
+}
 .container{
     margin-top: 20px;
 }
@@ -52,4 +56,9 @@ header{
 
 .content{
     flex: 1 0 auto;
+}
+.table{
+    margin: auto;
+    color: white;
+   
 }

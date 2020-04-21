@@ -1,13 +1,17 @@
-
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal"><a class="navbar-brand" href="#"><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/foodapp-d7dcc.appspot.com/o/logo.png?alt=media&token=9cd09381-b6fd-4029-8704-a9a645c4a84b" height="28"></a></h5>
+<div class ="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+   <a class="navbar-brand" routerLink="/"><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/foodapp-d7dcc.appspot.com/o/logo.png?alt=media&token=9cd09381-b6fd-4029-8704-a9a645c4a84b" height="28"></a>
     
-    <nav class="my-2 my-md-0 mr-md-3">
-   
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+   <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+  
       <a class="p-2 text-dark" href="https://harsimrandhoofar.github.io/Tiffin-Dashboard/">I am a Resturant?</a>
-    </nav>
+    
     <div *ngIf="!isLoggedIn">
-    <a class="btn btn-outline-primary" data-toggle="modal" data-target="#login">Customer Login</a>
+    <button class="btn btn-outline-dark" data-toggle="modal" data-target="#login">Customer Login</button>
   </div>
   <div *ngIf="isLoggedIn">
     <div class="dropdown show" *ngFor="let customer of customerdata">
@@ -21,9 +25,10 @@
       </div>
     </div>
   </div>
-  </div>
+   </div>
+</nav>
 
-
+</div>
 
   <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" #openLoginModel>
     <div class="modal-dialog" role="document">
