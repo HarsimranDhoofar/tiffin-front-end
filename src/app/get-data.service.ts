@@ -29,6 +29,7 @@ export class GetDataService {
     this.spinner.show();
     this.afAuth.signInWithEmailAndPassword(email, password)
        .catch(error =>{
+        this.spinner.hide();
         this.eventAuthError.next(error);
        })
        .then(userCredential =>{
@@ -55,6 +56,7 @@ export class GetDataService {
         });
      })
      .catch(error => {
+       this.spinner.hide();
        this.eventAuthError.next(error)
      })
    }

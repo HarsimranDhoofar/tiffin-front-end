@@ -16,6 +16,7 @@ import { StorageServiceModule} from 'angular-webstorage-service';
 import { FooterComponent } from './footer/footer.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     StripeModule.forRoot("pk_test_TM7OZXVg3HYW87b8KY8cOzIg00kukIY7nL"),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),

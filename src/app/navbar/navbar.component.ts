@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   mySubscription: any;
   isLoggedIn: boolean = false;
   customerdata: Array<any> =[];
-
+  authError: any;
   constructor(private getData: GetDataService,
     private router: Router,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
@@ -27,7 +27,10 @@ export class NavbarComponent implements OnInit {
       this.isLoggedIn = true;
       this.getdata();
     }
-    
+    this.getData.eventAuthError$.subscribe( data => {
+      this.authError = data;
+
+    })
   }
   login(frm1){
     this.getData.login(frm1.value.email, frm1.value.password);
